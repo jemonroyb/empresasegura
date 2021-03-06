@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run california_housing.py
+web: sh setup.sh && streamlit run app.py
