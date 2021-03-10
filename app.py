@@ -26,6 +26,8 @@ def data_preprocessor(df):
 
     
 
+    
+
 def visualize_confidence_level(prediction_proba):
     """
     this function uses matplotlib to create inference bar chart rendered with streamlit in real-time 
@@ -56,32 +58,50 @@ def visualize_confidence_level(prediction_proba):
    
     return
     
+add_selectbox = st.sidebar.selectbox(
+    "Menú de navegación",
+    ("INICIO", "PREDICCIÓN"))
+if add_selectbox == 'INICIO':    
+    st.write("""
+    #                  Empresa Segura
+    Predice la **victimización de una empresa**, mediante un modelo de **Inteligencia Artificial.**
 
-st.write("""
-#                  Empresa Segura
-Predice la **victimización de una empresa**, mediante un modelo de **Inteligencia Artificial.**
-
-""")
+    """)
+    st.markdown("<div align='center'><br>"
+                "<img src='https://img.shields.io/badge/HECHO%20CON-PYTHON-red?style=for-the-badge'"
+                "alt='API stability' height='25'/>"
+                "<img src='https://img.shields.io/badge/LIBRER%C3%8DA-PYCARET-blue?style=for-the-badge'"
+                "alt='API stability' height='25'/>"
+                "<img src='https://img.shields.io/badge/INTERFAZ%20GR%C3%81FICA-STREAMLIT-brightgreen?style=for-the-badge'"
+                "alt='API stability' height='25'/>"
+                "<img src='https://img.shields.io/badge/SERVIDOR-HEROKU-yellow?style=for-the-badge'"
+                "alt='API stability' height='25'/></div>"
+                
+                , unsafe_allow_html=True)
 
 #read in wine image and render with streamlit
-image = Image.open('em.png')
-st.image(image, caption='Jhon Monroy',use_column_width=True)
+    image = Image.open('em.png')
+    st.image(image, caption='',use_column_width=True)
 
-st.sidebar.header('**Parámetros de entrada**') 
-st.write("""
+   
+    st.write("""
 
-Los datos del modelo de predicción son obtenidos de INEI [victimización de empresas](http://iinei.inei.gob.pe/microdatos).
+    Los datos del modelo de predicción son obtenidos de INEI [victimización de empresas](http://iinei.inei.gob.pe/microdatos).
 
-**Ingresa valores a través de los controles del panel izquierdo para generar predicciones.**
+    **Ingresa valores a través de los controles del panel izquierdo para generar predicciones.**
 
-""")
+    """)
+    st.sidebar.info('Esta aplicación está creada para predecir los delitos empresariales')
+    st.sidebar.success('Jhon Monroy Barrios')
+if add_selectbox == 'PREDICCIÓN':
 
-def get_user_input():
-    """
-    this function is used to get user input using sidebar slider and selectbox 
-    return type : pandas dataframe
-    """
-    acti2 = st.sidebar.selectbox('Código de Actividad Económica', ['ACABADO DE PRODUCTOS TEXTILES',
+    def get_user_input():
+        """
+        this function is used to get user input using sidebar slider and selectbox 
+        return type : pandas dataframe
+        """
+        st.sidebar.header('**Parámetros de entrada**') 
+        acti2 = st.sidebar.selectbox('Código de Actividad Económica', ['ACABADO DE PRODUCTOS TEXTILES',
         'ACTIVIDADES COMBINADAS DE SERVICIOS ADMINISTRATIVOS DE OFICINA',                                                                                     
         'ACTIVIDADES CREATIVAS, ARTÍSTICAS Y DE ENTRETENIMIENTO',                                                                                                
         'ACTIVIDADES DE AGENCIAS DE COBRO Y AGENCIAS DE CALIFICACIÓN CREDITICIA',                                                                                 
@@ -396,19 +416,19 @@ def get_user_input():
         #'VENTA DE VEHÍCULOS AUTOMOTORES'                                                                                                                     128
         #'VENTA, MANTENIMIENTO Y REPARACIÓN DE MOTOCICLETAS Y DE SUS PARTES, PIEZAS Y ACCESORIOS.',                                                               
         #'VENTAS DE PARTES, PIEZAS Y ACCESORIOS PARA VEHÍCULOS AUTOMOTORES'
-    ])
-    Departament = st.sidebar.selectbox('Nombre del Departamento', ['AMAZONAS','AREQUIPA','ÁNCASH','APURÍMAC','AYACUCHO','HUANCAVELICA','HUÁNUCO','JUNÍN','MADRE DE DIOS','MOQUEGUA','PASCO','SAN MARTÍN','TACNA','TUMBES','UCAYALI','PUNO','LIMA','CALLAO','CUSCO','LA LIBERTAD','JUNÍN','CAJAMARCA','LAMBAYEQUE','LORETO'])
-    Tama = st.sidebar.selectbox('Tamaño de Empresa', ['MICRO', 'PEQUEÑA','MEDIANA','GRANDE'])
-    F1 = st.sidebar.selectbox('Infraestructura física (alambrado, muros, etc.)?', [0,1])
-    F2 = st.sidebar.selectbox('Sistema de video y captura de imágenes?', [0,1])
-    F3 = st.sidebar.selectbox('Sistema de control de acceso de personal?',  [0,1])
-    F4 = st.sidebar.selectbox('Sistema de alarma de seguridad electrónica?', [0,1])
-    F5 = st.sidebar.selectbox('Seguridad para el traslado de valores?', [0,1])
-    F6 = st.sidebar.selectbox('Seguridad para el traslado de bienes?', [0,1])
-    F7 = st.sidebar.selectbox('Personal para resguardo (guardaespaldas)?',[0,1])
-    F8 = st.sidebar.selectbox('Personal de seguridad de bienes e inmuebles?',  [0,1])
-    
-    features  = {'acti2': acti2	,
+         ])
+        Departament = st.sidebar.selectbox('Nombre del Departamento', ['AMAZONAS','AREQUIPA','ÁNCASH','APURÍMAC','AYACUCHO','HUANCAVELICA','HUÁNUCO','JUNÍN','MADRE DE DIOS','MOQUEGUA','PASCO','SAN MARTÍN','TACNA','TUMBES','UCAYALI','PUNO','LIMA','CALLAO','CUSCO','LA LIBERTAD','JUNÍN','CAJAMARCA','LAMBAYEQUE','LORETO'])
+        Tama = st.sidebar.selectbox('Tamaño de Empresa', ['MICRO', 'PEQUEÑA','MEDIANA','GRANDE'])
+        F1 = st.sidebar.selectbox('Infraestructura física (alambrado, muros, etc.)?', [0,1])
+        F2 = st.sidebar.selectbox('Sistema de video y captura de imágenes?', [0,1])
+        F3 = st.sidebar.selectbox('Sistema de control de acceso de personal?',  [0,1])
+        F4 = st.sidebar.selectbox('Sistema de alarma de seguridad electrónica?', [0,1])
+        F5 = st.sidebar.selectbox('Seguridad para el traslado de valores?', [0,1])
+        F6 = st.sidebar.selectbox('Seguridad para el traslado de bienes?', [0,1])
+        F7 = st.sidebar.selectbox('Personal para resguardo (guardaespaldas)?',[0,1])
+        F8 = st.sidebar.selectbox('Personal de seguridad de bienes e inmuebles?',  [0,1])
+        
+        features  = {'acti2': acti2	,
             'Departament': Departament,
             'Tama': Tama,
             'F1': F1,
@@ -419,69 +439,69 @@ def get_user_input():
             'F6': F6,
             'F7': F7,
             'F8': F8}
-    data = pd.DataFrame(features,index=[0])
+        data = pd.DataFrame(features,index=[0])
 
-    return data
-st.set_option('deprecation.showPyplotGlobalUse', False)
+        return data
+    st.set_option('deprecation.showPyplotGlobalUse', False)
 
-user_input_df = get_user_input()
-processed_user_input = data_preprocessor(user_input_df)
+    user_input_df = get_user_input()
+    processed_user_input = data_preprocessor(user_input_df)
 
-st.subheader('**Parámetros de entrada de usuario**')
-st.write(user_input_df)
+    st.subheader('**Parámetros de entrada de usuario**')
+    st.write(user_input_df)
 
-st.subheader('**Parámetros de Predicción**')
-prediction = model.predict(processed_user_input)
-prediction_proba = model.predict_proba(processed_user_input)
+    st.subheader('**Parámetros de Predicción**')
+    prediction = model.predict(processed_user_input)
+    prediction_proba = model.predict_proba(processed_user_input)
 
-visualize_confidence_level(prediction_proba)
+    visualize_confidence_level(prediction_proba)
 
-features_df  = pd.DataFrame(user_input_df)
+    features_df  = pd.DataFrame(user_input_df)
 ############################
 
 ###########################
 
-st.subheader('**Parámetros de Recomendación**')
+    st.subheader('**Parámetros de Recomendación**')
 #if st.button('Predicción'):
     
-prediction = predict_quality(model, features_df)
+    prediction = predict_quality(model, features_df)
     
     #st.write('Según sus selecciones, el modelo predice un valor de '+ str(prediction))
 
 
-if prediction == 'Rob':
+    if prediction == 'Rob':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo")
         st.text("Mobiliario, Maquinaria o equipo industrial, Equipo electrónico, Mercancia por parte del personal, Mercancia por parte de los clientes, Dinero, tarjetas de crédito o cheques, Vehículos")##centari
         img = Image.open("images/5.jpg")
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección: Sentido común ") #brde
-elif prediction == 'Int':
+    elif prediction == 'Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento")##centari
         img = Image.open("images/4.jpg")#Iagen
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección: Utiliza soluciones de seguridad") #brde
-elif prediction == 'Est':
+    elif prediction == 'Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Estafa")##centari
         st.text("Pago o prestación de un producto y/o servicio no retribuido (por el cliente o proveedor), Cheque o dinero falso,Desvío de recursos por personal de la empresa, Con tarjeta de débito o crédito, Por internet / correo electrónico ")##centari
         img = Image.open("images/8.jpg")#Iagen
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección:") #brde
-elif prediction == 'Rob_Est':
+    elif prediction == 'Rob_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo y Estafa")##centari
         img = Image.open("images/1.jpg")#Iagen
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección:") #brde
-elif prediction == 'Rob_Int':
+    elif prediction == 'Rob_Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo e intent")##centari
         img = Image.open("images/7.jpg")#Iagen
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección:") #brde
-elif prediction == 'Int_Est':
+    elif prediction == 'Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento y estafa")##centari
         img = Image.open("images/6.jpg")#Iagen
         st.image(img, width=300)#captin
         st.success("Te recordamos algunas medidas básicas de protección:") #brde
-elif prediction == 'Rob_Int_Est':
+    elif prediction == 'Rob_Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Rob Intento Estafa")##centari
         img = Image.open("images/9.jpg")#Iagen
         st.image(img, width=300)#captin
