@@ -8,6 +8,7 @@ import streamlit as st
 from PIL import Image
 
 
+
 def predict_quality(model, df):
     
     predictions_data = predict_model(estimator = model, data = df)
@@ -35,7 +36,7 @@ def visualize_confidence_level(prediction_proba):
     """
     data = (prediction_proba[0]*100).round(2)
     grad_percentage = pd.DataFrame(data = data,columns = ['Porcentage'],index = ['Est','Int','Int_Est','Rob','Rob_Est','Rob_Int','Rob_Int_Est'])
-    ax = grad_percentage.plot(kind='barh', figsize=(7, 4), color='#c95904', zorder=10, width=0.8)
+    ax = grad_percentage.plot(kind='barh', figsize=(7, 4), color='#0067e7', zorder=10, width=0.8)
     ax.legend().set_visible(False)
     ax.set_xlim(xmin=0, xmax=100)
     
@@ -51,7 +52,7 @@ def visualize_confidence_level(prediction_proba):
         ax.axvline(x=tick, linestyle='dashed', alpha=0.4, color='#eeeeee', zorder=1)
 
     ax.set_xlabel(" Porcentage(%) Nivel de confianza", labelpad=2, weight='bold', size=12)
-    ax.set_ylabel("Victimizacin", labelpad=10, weight='bold', size=12)
+    ax.set_ylabel("Victimización", labelpad=10, weight='bold', size=12)
     ax.set_title('Nivel de confianza de la predicción ', fontdict=None, loc='center', pad=None, weight='bold')
 
     st.pyplot()
@@ -60,12 +61,12 @@ def visualize_confidence_level(prediction_proba):
     
 add_selectbox = st.sidebar.selectbox(
     "Menú de navegación",
-    ("INICIO", "PREDICCIÓN"))
+    ("INICIO","MODELO","PREDICCIÓN"))
 if add_selectbox == 'INICIO':    
     st.write("""
     #                  Empresa Segura
     Predice la **victimización de una empresa**, mediante un modelo de **Inteligencia Artificial.**
-
+    Los datos del modelo de predicción son obtenidos de INEI [victimización de empresas](http://iinei.inei.gob.pe/microdatos).
     """)
     st.markdown("<div align='center'><br>"
                 "<img src='https://img.shields.io/badge/HECHO%20CON-PYTHON-red?style=for-the-badge'"
@@ -86,13 +87,32 @@ if add_selectbox == 'INICIO':
    
     st.write("""
 
-    Los datos del modelo de predicción son obtenidos de INEI [victimización de empresas](http://iinei.inei.gob.pe/microdatos).
-
-    **Ingresa valores a través de los controles del panel izquierdo para generar predicciones.**
+    **Ingresa valores a través de los controles del panel superior izquierdo para generar predicciones.**
 
     """)
     st.sidebar.info('Esta aplicación está creada para predecir los delitos empresariales')
     st.sidebar.success('Jhon Monroy Barrios')
+
+if add_selectbox == 'MODELO':   
+    st.write("""
+    #                  Empresa Segura
+    El modelo predictivo es capaz de predecir los delitos, mediante la utilización del algoritmo  **Extra Trees Classifier**,  obteniendo una precisión de **0.9457%** utilizando la librería de pycaret con el histórico de la encuesta nacional de victimización de empresas (ENVE-2018), elaborada por el Instituto Nacional de Estadística e Informática (INEI).
+
+     """)
+    
+    st.sidebar.info('Esta aplicación está creada para predecir los delitos empresariales')
+    st.sidebar.success('Jhon Monroy Barrios')
+#read in wine image and render with streamlit
+    image = Image.open('empresa.jpg')
+    st.image(image, caption='ab',use_column_width=True)
+
+   
+    st.write("""
+
+     **Ingresa valores a través de los controles del panel superior izquierdo para generar predicciones.**
+
+    """)
+
 if add_selectbox == 'PREDICCIÓN':
 
     def get_user_input():
@@ -461,51 +481,51 @@ if add_selectbox == 'PREDICCIÓN':
 
 ###########################
 
-    st.subheader('**Parámetros de Recomendación**')
+  
 #if st.button('Predicción'):
     
     prediction = predict_quality(model, features_df)
     
     #st.write('Según sus selecciones, el modelo predice un valor de '+ str(prediction))
-
+    #st.subheader('**Parámetros de Recomendación**')
 
     if prediction == 'Rob':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo")
         st.text("Mobiliario, Maquinaria o equipo industrial, Equipo electrónico, Mercancia por parte del personal, Mercancia por parte de los clientes, Dinero, tarjetas de crédito o cheques, Vehículos")##centari
-        img = Image.open("images/5.jpg")
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección: Sentido común ") #brde
+        #img = Image.open("images/5.jpg")
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección: Sentido común ") #brde
     elif prediction == 'Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento")##centari
-        img = Image.open("images/4.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección: Utiliza soluciones de seguridad") #brde
+        #img = Image.open("images/4.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección: Utiliza soluciones de seguridad") #brde
     elif prediction == 'Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Estafa")##centari
         st.text("Pago o prestación de un producto y/o servicio no retribuido (por el cliente o proveedor), Cheque o dinero falso,Desvío de recursos por personal de la empresa, Con tarjeta de débito o crédito, Por internet / correo electrónico ")##centari
-        img = Image.open("images/8.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección:") #brde
+        #img = Image.open("images/8.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección:") #brde
     elif prediction == 'Rob_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo y Estafa")##centari
-        img = Image.open("images/1.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección:") #brde
+        #img = Image.open("images/1.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección:") #brde
     elif prediction == 'Rob_Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo e intent")##centari
-        img = Image.open("images/7.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección:") #brde
+        #img = Image.open("images/7.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección:") #brde
     elif prediction == 'Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento y estafa")##centari
-        img = Image.open("images/6.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas de protección:") #brde
+        #img = Image.open("images/6.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas de protección:") #brde
     elif prediction == 'Rob_Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Rob Intento Estafa")##centari
-        img = Image.open("images/9.jpg")#Iagen
-        st.image(img, width=300)#captin
-        st.success("Te recordamos algunas medidas básicas \n Este e de protección:") #brde
+        #img = Image.open("images/9.jpg")#Iagen
+        #st.image(img, width=300)#captin
+        st.info("Te recordamos algunas medidas básicas \n Este e de protección:") #brde
 
 
 
