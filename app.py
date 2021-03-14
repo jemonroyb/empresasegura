@@ -61,13 +61,18 @@ def visualize_confidence_level(prediction_proba):
     
 add_selectbox = st.sidebar.selectbox(
     "Menú de navegación",
-    ("INICIO","MODELO","PREDICCIÓN"))
-if add_selectbox == 'INICIO':    
-    st.write("""
-    #                  Empresa Segura
-    Predice la **victimización de una empresa**, mediante un modelo de **Inteligencia Artificial.**
-    Los datos del modelo de predicción son obtenidos de INEI [victimización de empresas](http://iinei.inei.gob.pe/microdatos).
-    """)
+    ("MODELO","PREDICCIÓN"))
+
+
+if add_selectbox == 'MODELO':   
+
+    st.header("🦊 PREDICCIÓN DE DELICTIVOS EMPRESARIALES")
+    st.write("Esta aplicación se puede usar para predecir los delitos empresariales basado en la encuesta nacional de victimización de empresas (ENVE-2018), elaborada por el Instituto Nacional de Estadística e Informática (INEI).")
+    st.write("Los delitos más frecuentes son robo, fraude, estafa y extorsión. La inseguridad de las empresas afecta su productividad y consecuentemente a la competitividad de la misma.")
+
+                        
+    st.sidebar.info('Jhon Monroy Barrios')
+#read in wine image and render with streamlit
     st.markdown("<div align='center'><br>"
                 "<img src='https://img.shields.io/badge/HECHO%20CON-PYTHON-red?style=for-the-badge'"
                 "alt='API stability' height='25'/>"
@@ -79,39 +84,20 @@ if add_selectbox == 'INICIO':
                 "alt='API stability' height='25'/></div>"
                 
                 , unsafe_allow_html=True)
-
-#read in wine image and render with streamlit
-    image = Image.open('em.png')
+    image = Image.open('empresa.jpg')
     st.image(image, caption='',use_column_width=True)
 
    
-    st.write("""
-
-    **Ingresa valores a través de los controles del panel superior izquierdo para generar predicciones.**
-
-    """)
-    st.sidebar.info('Esta aplicación está creada para predecir los delitos empresariales')
-    st.sidebar.success('Jhon Monroy Barrios')
-
-if add_selectbox == 'MODELO':   
-    st.write("""
-    #                  Empresa Segura
-    El modelo predictivo es capaz de predecir los delitos, mediante la utilización del algoritmo  **Extra Trees Classifier**,  obteniendo una precisión de **0.9457%** utilizando la librería de pycaret con el histórico de la encuesta nacional de victimización de empresas (ENVE-2018), elaborada por el Instituto Nacional de Estadística e Informática (INEI).
-
-     """)
     
-    st.sidebar.info('Esta aplicación está creada para predecir los delitos empresariales')
-    st.sidebar.success('Jhon Monroy Barrios')
-#read in wine image and render with streamlit
-    image = Image.open('empresa.jpg')
-    st.image(image, caption='ab',use_column_width=True)
-
-   
-    st.write("""
-
-     **Ingresa valores a través de los controles del panel superior izquierdo para generar predicciones.**
-
-    """)
+    st.header("🎻 INSTRUCCIONES")
+    st.subheader("♟ Navegación ♟")
+    st.markdown("* Seleccione los valores a través de los controles del panel superior izquierdo para desplazarse por la aplicación y generar predicciones.")
+    st.subheader("♟ Parámetros de entrada de usuario ♟")
+    st.markdown("* Seleccione las variables de predicción a través de los controles del panel superior izquierdo para generar predicciones.")
+    st.subheader("♟ Parámetros de Predicción ♟")
+    st.markdown("* Resultados obtenidos automáticamente  de las variables de predicción. ")
+    
+    
 
 if add_selectbox == 'PREDICCIÓN':
 
