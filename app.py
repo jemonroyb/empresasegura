@@ -106,7 +106,7 @@ if add_selectbox == 'PREDICCIÓN':
         this function is used to get user input using sidebar slider and selectbox 
         return type : pandas dataframe
         """
-        st.sidebar.header('**Parámetros de entrada**') 
+        st.sidebar.header('Parámetros de entrada') 
         acti2 = st.sidebar.selectbox('Código de Actividad Económica', ['ACABADO DE PRODUCTOS TEXTILES',
         'ACTIVIDADES COMBINADAS DE SERVICIOS ADMINISTRATIVOS DE OFICINA',                                                                                     
         'ACTIVIDADES CREATIVAS, ARTÍSTICAS Y DE ENTRETENIMIENTO',                                                                                                
@@ -425,14 +425,15 @@ if add_selectbox == 'PREDICCIÓN':
          ])
         Departament = st.sidebar.selectbox('Nombre del Departamento', ['AMAZONAS','AREQUIPA','ÁNCASH','APURÍMAC','AYACUCHO','HUANCAVELICA','HUÁNUCO','JUNÍN','MADRE DE DIOS','MOQUEGUA','PASCO','SAN MARTÍN','TACNA','TUMBES','UCAYALI','PUNO','LIMA','CALLAO','CUSCO','LA LIBERTAD','JUNÍN','CAJAMARCA','LAMBAYEQUE','LORETO'])
         Tama = st.sidebar.selectbox('Tamaño de Empresa', ['MICRO', 'PEQUEÑA','MEDIANA','GRANDE'])
-        F1 = st.sidebar.selectbox('Infraestructura física (alambrado, muros, etc.)?', [0,1])
-        F2 = st.sidebar.selectbox('Sistema de video y captura de imágenes?', [0,1])
-        F3 = st.sidebar.selectbox('Sistema de control de acceso de personal?',  [0,1])
-        F4 = st.sidebar.selectbox('Sistema de alarma de seguridad electrónica?', [0,1])
-        F5 = st.sidebar.selectbox('Seguridad para el traslado de valores?', [0,1])
-        F6 = st.sidebar.selectbox('Seguridad para el traslado de bienes?', [0,1])
-        F7 = st.sidebar.selectbox('Personal para resguardo (guardaespaldas)?',[0,1])
-        F8 = st.sidebar.selectbox('Personal de seguridad de bienes e inmuebles?',  [0,1])
+        st.sidebar.header('Medida de seguridad: Si(1), No(0)') 
+        F1 = st.sidebar.slider('Infraestructura física (alambrado, muros, etc.?', 0,1)
+        F2 = st.sidebar.slider('Sistema de video y captura de imágenes?', 0,1)
+        F3 = st.sidebar.slider('Sistema de control de acceso de personal?', 0,1)
+        F4 = st.sidebar.slider('Sistema de alarma de seguridad electrónica?', 0,1)
+        F5 = st.sidebar.slider('Seguridad para el traslado de valores?', 0,1)
+        F6 = st.sidebar.slider('Seguridad para el traslado de bienes?', 0,1)
+        F7 = st.sidebar.slider('Personal para resguardo (guardaespaldas)?',0,1)
+        F8 = st.sidebar.slider('Personal de seguridad de bienes e inmuebles?', 0,1)
         
         features  = {'acti2': acti2	,
             'Departament': Departament,
