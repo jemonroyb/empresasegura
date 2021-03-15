@@ -425,7 +425,7 @@ if add_selectbox == 'PREDICCIÓN':
          ])
         Departament = st.sidebar.selectbox('Nombre del Departamento', ['AMAZONAS','AREQUIPA','ÁNCASH','APURÍMAC','AYACUCHO','HUANCAVELICA','HUÁNUCO','JUNÍN','MADRE DE DIOS','MOQUEGUA','PASCO','SAN MARTÍN','TACNA','TUMBES','UCAYALI','PUNO','LIMA','CALLAO','CUSCO','LA LIBERTAD','JUNÍN','CAJAMARCA','LAMBAYEQUE','LORETO'])
         Tama = st.sidebar.selectbox('Tamaño de Empresa', ['MICRO', 'PEQUEÑA','MEDIANA','GRANDE'])
-        st.sidebar.header('Medida de seguridad: Si(1), No(0)') 
+        st.sidebar.header('Seguridad: No(0), Si(1))') 
         F1 = st.sidebar.slider('Infraestructura física (alambrado, muros, etc.?', 0,1)
         F2 = st.sidebar.slider('Sistema de video y captura de imágenes?', 0,1)
         F3 = st.sidebar.slider('Sistema de control de acceso de personal?', 0,1)
