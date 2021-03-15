@@ -512,7 +512,7 @@ if add_selectbox == 'PREDICCIÓN':
         #img = Image.open("images/9.jpg")#Iagen
         #st.image(img, width=300)#captin
         
-    st.error("Te recordamos evitar actividades rutinarias, exposicines y lugares peligrosos.") #brde
+    st.success("Te recordamos evitar actividades rutinarias, exposicines y lugares peligrosos.") #brde
 
 
 
