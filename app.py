@@ -70,7 +70,7 @@ if add_selectbox == 'MODELO':
     st.write("Esta aplicación se puede usar para predecir los delitos empresariales basado en la encuesta nacional de victimización de empresas (ENVE-2018), elaborada por el Instituto Nacional de Estadística e Informática (INEI).")
     st.write("Los delitos más frecuentes son robo, fraude, estafa y extorsión. La inseguridad de las empresas afecta su productividad y consecuentemente a la competitividad de la misma.")
 
-                        
+    st.sidebar.write("Selecciona la opción de navegación ☝️")                  
     st.sidebar.info('Jhon Monroy Barrios')
 #read in wine image and render with streamlit
     st.markdown("<div align='center'><br>"
@@ -480,38 +480,39 @@ if add_selectbox == 'PREDICCIÓN':
         st.text("Mobiliario, Maquinaria o equipo industrial, Equipo electrónico, Mercancia por parte del personal, Mercancia por parte de los clientes, Dinero, tarjetas de crédito o cheques, Vehículos")##centari
         #img = Image.open("images/5.jpg")
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección: Sentido común ") #brde
+       
     elif prediction == 'Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento")##centari
         #img = Image.open("images/4.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección: Utiliza soluciones de seguridad") #brde
+       
     elif prediction == 'Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Estafa")##centari
         st.text("Pago o prestación de un producto y/o servicio no retribuido (por el cliente o proveedor), Cheque o dinero falso,Desvío de recursos por personal de la empresa, Con tarjeta de débito o crédito, Por internet / correo electrónico ")##centari
         #img = Image.open("images/8.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección:") #brde
+      
     elif prediction == 'Rob_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo y Estafa")##centari
         #img = Image.open("images/1.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección:") #brde
+       
     elif prediction == 'Rob_Int':
         st.subheader("Según sus selecciones, el modelo predice un valor: Robo e intent")##centari
         #img = Image.open("images/7.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección:") #brde
+       
     elif prediction == 'Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Intento y estafa")##centari
         #img = Image.open("images/6.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas de protección:") #brde
+      
     elif prediction == 'Rob_Int_Est':
         st.subheader("Según sus selecciones, el modelo predice un valor: Rob Intento Estafa")##centari
         #img = Image.open("images/9.jpg")#Iagen
         #st.image(img, width=300)#captin
-        st.info("Te recordamos algunas medidas básicas \n Este e de protección:") #brde
+        
+    st.error("Te recordamos evitar actividades rutinarias, exposicines y lugares peligrosos.") #brde
 
 
 
